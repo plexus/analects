@@ -1,9 +1,10 @@
 module Analects
   class CedictLoader
     include Enumerable
-    
+    attr_reader :headers
+
     URL = ENV['CEDICT'] || 'http://www.mdbg.net/chindict/export/cedict/cedict_1_0_ts_utf-8_mdbg.txt.gz'
-    LOCAL = File.join(File.dirnam(__FILE__), '../data/cedict_1_0_ts_utf-8_mdbg.txt')
+    LOCAL = File.join(File.dirname(__FILE__), '../../data/cedict_1_0_ts_utf-8_mdbg.txt')
 
     def self.download!
       require 'zlib'
@@ -15,13 +16,12 @@ module Analects
 
     def initialize(input = nil)
       @input = input
-      @headers = []
+      @headers = {}
       @input.lines.each do |line|
-        if line =~ /^#/
-            @headers << line
-        else
-          break
+        if line =~ /^#! (.*)=(.*)/
+          @headers[$1.strip] = $2.strip 
         end
+        break unless line =~ /^#/
       end
     end
     

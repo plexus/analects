@@ -16,3 +16,5 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+data/cedict_1_0_ts_utf-8_mdbg.txt
