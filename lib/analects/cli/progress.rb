@@ -4,27 +4,33 @@ module Analects
     class Progress
       attr_accessor :length, :count
       
-      def initialize(total, accuracy = 1000)
+      def initialize(total, accuracy = 1000, prefix = '')
         @total = total
         @current = 0
         @length = 60
         @count = 100
         @accuracy = accuracy
+        @prefix = prefix
       end
       
       def next
         @current += 1
-        draw
+        draw if (@current % (Float(@total)/@accuracy).ceil) == 0 || @current == @total
       end
       
       def draw
-        return unless (@current % (Float(@total)/@accuracy).ceil) == 0
+        return unless 
         x = pos(@length).floor
-        print "\e[%dD\e[32m[\e[31m%s%s\e[32m]\e[34m %d/%d\e[0m" % [@length+10, '='*x, ' '*(@length-x), pos(@count), @count] 
+        total_count = @count == 100 ? '%' : "/#{@count}"
+        print "\e[%dD\e[32m%s[\e[31m%s%s\e[32m]\e[34m %d%s\e[0m" % [@length+10+@prefix.length, @prefix, '='*x, ' '*(@length-x), pos(@count), total_count] 
       end
       
       def pos(scale)
-        Float(@current)/@total * scale 
+        if @current == @total
+          scale
+        else
+          Float(@current)/@total * scale 
+        end
       end
     end
   end

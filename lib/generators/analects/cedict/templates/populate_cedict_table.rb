@@ -16,7 +16,7 @@ class PopulateCedictTable < ActiveRecord::Migration
       l.headers.each do |k,v|
         puts "     #{k}=#{v}"
       end
-      p = Analects::CLI::Progress.new Integer(l.headers['entries'])
+      p = Analects::CLI::Progress.new(Integer(l.headers['entries'])-1, 5000, '   ')
       Cedict.transaction do
         l.each do |traditional, simplified, pinyin, english|
           p.next
