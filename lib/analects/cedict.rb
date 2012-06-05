@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Analects
   class CedictLoader
     include Enumerable
@@ -26,10 +28,10 @@ module Analects
     end
     
     def process_input(line)
-      if line.strip =~ /^([^\s]*) ([^\s]*) \[([\w\d: ]+)\](.*)/
+      if line.strip =~ /^([^\s]*) ([^\s]*) \[([\w\d:,· ]+)\](.*)/
         [$1,$2,$3,$4].map{|x| x.strip}
       else
-        line
+        raise "Unexpected input : #{line.inspect}"
       end
     end
 
