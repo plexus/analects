@@ -9,7 +9,7 @@ This is a work in progress. At the moment it contains
 
 In you Gemfile
 
-    gem 'analects', :git => 'git@github.com:arnebrasseur/analects.rb.git'
+    gem 'analects', :git => 'git@github.com:arnebrasseur/analects.git'
 
 Then
 
