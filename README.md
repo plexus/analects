@@ -1,6 +1,8 @@
 analects.rb
 ===========
 
+[![Build Status](https://travis-ci.org/arnebrasseur/analects.png?branch=v2)](https://travis-ci.org/arnebrasseur/analects)
+
 Public datasets on the Chinese language, accessible from Ruby
 
 This is a work in progress. At the moment it contains
