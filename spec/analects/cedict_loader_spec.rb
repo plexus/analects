@@ -39,8 +39,10 @@ describe Analects::CedictLoader do
     cedict_loader.map {|x| x.size.should === 4 }
   end
 
-  it "returns an enumerator when each is called without block" do
-    cedict_loader.each.is_a? Enumerator
+  if RUBY_VERSION.split('.').take(2).join('.').to_f >= 1.9
+    it "returns an enumerator when each is called without block" do
+      cedict_loader.each.is_a? Enumerator
+    end
   end
 
 end
