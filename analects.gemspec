@@ -13,7 +13,9 @@ Gem::Specification.new do |spec|
   spec.summary     =
   spec.description = 'Open source data sets on Chinese accessible from Ruby'
 
-  spec.add_development_dependency('rspec', '~> 2.11.0')
+  spec.add_development_dependency('rspec')
+  spec.add_development_dependency('simplecov')
+  spec.add_development_dependency('rake')
 
   spec.require_path = 'lib'
   spec.files        = Dir.glob('**/*.rb') + %w(README.md)
