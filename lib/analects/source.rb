@@ -7,7 +7,6 @@ module Analects
     end
 
     def name      ; options[:name]                ; end
-
     def url       ; options[:url]                 ; end
     def retrieval ; Array(  options[:retrieval] ) ; end
 
@@ -15,7 +14,7 @@ module Analects
       File.expand_path( '../../../data', __FILE__ )
     end
 
-    def location 
+    def location
       options[:data_file] ? File.join( data_dir, options[:data_file] ) : File.join( data_dir, options[:name].to_s )
     end
 
@@ -28,7 +27,7 @@ module Analects
     end
 
     def retrieve!
-      retrieval.inject( url ) do | result, method | 
+      retrieval.inject( url ) do | result, method |
         self.send( "retrieve_#{method}", result )
       end
     end
@@ -55,10 +54,6 @@ module Analects
     # url -> clones repo
     def retrieve_git( url )
       `git clone #{url} #{data_dir}/#{name}` # Admittedly crude
-    end
-
-    def loader
-      options[:loader].new( location )
     end
 
   end
