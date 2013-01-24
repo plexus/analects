@@ -5,8 +5,14 @@ module Analects
     attr_reader   :location
     attr_accessor :only_unicode
 
-    def initialize( location, only_unicode = true )
-      @location     = location
+    def initialize( location_or_contents, only_unicode = true )
+      if location_or_contents =~ /\n/
+        @contents = location_or_contents
+      else
+        @location = location_or_contents
+        @contents = nil
+      end
+
       @only_unicode = only_unicode
     end
 
@@ -16,12 +22,10 @@ module Analects
 
     def each( &blk )
       if block_given?
-        files.each do |f|
-          File.open(f).lines.each do |l|
-            next unless l =~ /\t/
-            next if only_unicode && l !~ /^U/
-            yield l.strip.split("\t")[0..2]
-          end
+        enum_lines do |l|
+          next unless l =~ /\t/
+          next if only_unicode && l !~ /^U/
+          yield l.strip.split("\t")[0..2]
         end
       else
         enum_for( :each )
@@ -29,13 +33,21 @@ module Analects
     end
 
     def files
-      File.directory?( location ) ? Dir[File.join(location, 'IDS-*.txt')] : Array( location )
+      location && (File.directory?( location ) ? Dir[File.join(location, 'IDS-*.txt')] : Array( location ))
     end
 
-    def enum_lines
-      files.each do |f|
-        File.open(f).lines.each do |l|
+    def enum_lines(&blk)
+      if @contents
+        @contents.lines.each do |l|
+          next if l =~ /^#/
           yield l
+        end
+      else
+        files.each do |f|
+          File.open(f).lines.each do |l|
+            next if l =~ /^#/
+            yield l
+          end
         end
       end
     end
