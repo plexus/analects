@@ -21,4 +21,3 @@ Then
 
 That's all folks.
 
-All code (c) Arne Brasseur, 2012. Analects is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
