@@ -1,5 +1,6 @@
 module Analects
   class Source
+    include Enumerable
     attr_reader :options
 
     def initialize( options = {} )
@@ -9,6 +10,7 @@ module Analects
     def name      ; options[:name]                ; end
     def url       ; options[:url]                 ; end
     def retrieval ; Array(  options[:retrieval] ) ; end
+    def loader    ; options[:loader]              ; end
 
     def data_dir
       File.expand_path( '../../../data', __FILE__ )
@@ -54,6 +56,11 @@ module Analects
     # url -> clones repo
     def retrieve_git( url )
       `git clone #{url} #{data_dir}/#{name}` # Admittedly crude
+    end
+
+    def each(&block)
+      return to_enum unless block_given?
+      loader.new(location).each(&block)
     end
 
   end

@@ -1,26 +1,25 @@
 analects.rb
 ===========
 
-[![Build Status](https://travis-ci.org/arnebrasseur/analects.png?branch=v2)](https://travis-ci.org/arnebrasseur/analects)
+[![Build Status](https://travis-ci.org/plexus/analects.png)](https://travis-ci.org/lexus/analects)
 
 Public datasets on the Chinese language, accessible from Ruby
 
-This is a work in progress. At the moment it contains
- * A class for easily downloading and processing CC-CEDICT
- * A Rails 3 generator that create migrations and a model for importing and using CC-CEDICT in your applications
+Download the data
 
-In you Gemfile
+```
+rake analects:retrieve:cedict
+rake analects:retrieve:cc-cedict
+```
 
-    gem 'analects', :git => 'git@github.com:arnebrasseur/analects.rb.git'
+Use the data
 
-Then
+```
+Analects::Sources.cedict.take(3)
+# => [["AA制", "AA制", "A A zhi4", "/to split the bill/to go Dutch/"], ["A咖", "A咖", "A ka1", "/class \"A\"/top grade/"], ["A片", "A片", "A pian4", "/adult movie/pornography/"]]
 
-    rails g analects:cedict
+Analects::Sources.chise_ids.to_a.sample(3)
+# [["U+59BF", "妿", "⿱加女"], ["U-0002441B", "𤐛", "⿰火閙"], ["U+83A1", "莡", "⿱艹足"]]
+```
 
-Then
-
-    rake db:migrate
-
-That's all folks.
-
-All code (c) Arne Brasseur, 2012. Analects is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
+All code (c) Arne Brasseur, 2012-2013. Analects is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
