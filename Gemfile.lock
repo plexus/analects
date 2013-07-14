@@ -4,7 +4,7 @@ PATH
     analects (0.2.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     diff-lcs (1.1.3)
     multi_json (1.5.0)
