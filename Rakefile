@@ -14,12 +14,12 @@ namespace :analects do
   namespace :retrieve do
     desc 'download CC-CEDICT'
     task :cedict do
-      Analects::Sources.cedict.retrieve
+      Analects::Library.new.cedict.retrieve
     end
 
     desc 'download Chise-IDS'
     task :chise_ids do
-      Analects::Sources.chise_ids.retrieve
+      Analects::Library.new.chise_ids.retrieve
     end
 
     desc 'download all sources'

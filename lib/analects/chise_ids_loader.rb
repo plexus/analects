@@ -5,7 +5,7 @@ module Analects
     attr_reader   :location
     attr_accessor :only_unicode
 
-    def initialize( location_or_contents, only_unicode = true )
+    def initialize(location_or_contents, only_unicode = true)
       if location_or_contents =~ /\n/
         @contents = location_or_contents
       else
@@ -17,10 +17,10 @@ module Analects
     end
 
     def field_names
-      [ :name, :representation, :ids ]
+      [:name, :representation, :ids]
     end
 
-    def each( &blk )
+    def each(&blk)
       if block_given?
         enum_lines do |l|
           next unless l =~ /\t/
@@ -28,12 +28,12 @@ module Analects
           yield l.strip.split("\t")[0..2]
         end
       else
-        enum_for( :each )
+        enum_for(:each)
       end
     end
 
     def files
-      location && (File.directory?( location ) ? Dir[File.join(location, 'IDS-*.txt')] : Array( location ))
+      location && (File.directory?(location) ? Dir[File.join(location, 'IDS-*.txt')] : Array(location))
     end
 
     def enum_lines(&blk)

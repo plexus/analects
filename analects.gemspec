@@ -17,6 +17,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('simplecov')
   spec.add_development_dependency('rake')
 
+  spec.add_runtime_dependency('active_support')
+
   spec.require_path = 'lib'
   spec.files        = Dir.glob('**/*.rb') + %w(README.md)
 end

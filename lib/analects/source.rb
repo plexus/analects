@@ -13,7 +13,7 @@ module Analects
     def loader    ; options[:loader]              ; end
 
     def data_dir
-      File.expand_path( '../../../data', __FILE__ )
+      options[:data_dir]
     end
 
     def location
