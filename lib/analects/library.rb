@@ -9,7 +9,10 @@ module Analects
     end
 
     def data_dir
-      return options[:data_dir] if options[:data_dir]
+      if options[:data_dir]
+        Dir.mkdir(options[:data_dir]) unless File.exist?(options[:data_dir])
+        return options[:data_dir]
+      end
       File.join(Dir.home, '.analects').tap do |dir|
         unless File.exist? dir
           Dir.mkdir dir

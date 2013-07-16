@@ -10,21 +10,7 @@ task :coverage do
   Rake::Task['spec'].invoke
 end
 
-namespace :analects do
-  namespace :retrieve do
-    desc 'download CC-CEDICT'
-    task :cedict do
-      Analects::Library.new.cedict.retrieve
-    end
-
-    desc 'download Chise-IDS'
-    task :chise_ids do
-      Analects::Library.new.chise_ids.retrieve
-    end
-
-    desc 'download all sources'
-    task :all => [:cedict, :chise_ids]
-  end
-end
-
 require 'analects'
+require 'analects/rake_tasks'
+
+Analects::RakeTasks.new
