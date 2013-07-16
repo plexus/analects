@@ -20,7 +20,7 @@ describe Analects::Library do
     subject(:cedict) { library.cedict }
 
     its(:name)     { should == :cedict }
-    its(:location) { should =~ /\/data\/cedict_1_0_ts_utf-8_mdbg\.txt$/ }
+    its(:location) { should == File.join(Dir.home, '.analects/cedict_1_0_ts_utf-8_mdbg.txt') }
 
     it "should download and unpack the CEDICT archive" do
       cedict.should_receive(:retrieve_http).once.with(Analects::CEDICT_URL).and_return(:a_stream)
@@ -39,7 +39,7 @@ describe Analects::Library do
 
     its( :name )      { should == :chise_ids }
     its( :retrieval ) { should == [ :git ] }
-    its( :location  ) { should =~ /\/data\/chise_ids$/}
+    its(:location   ) { should == File.join(Dir.home, '.analects/chise_ids') }
     its( :url       ) { should == Analects::CHISE_IDS_URL}
   end
 
