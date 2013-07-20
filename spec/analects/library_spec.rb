@@ -1,4 +1,6 @@
+require 'tempfile'
 require 'spec_helper'
+require 'securerandom'
 
 describe Analects::Library do
   subject(:library) {
@@ -7,12 +9,13 @@ describe Analects::Library do
   let(:options) { {} }
 
   context 'with a data_dir specified' do
+    let(:data_dir) { File.join(Dir.tmpdir, 'analects-' + SecureRandom.hex(16)) }
     let(:options) {
-      { data_dir: '/test/123' }
+      { data_dir: data_dir }
     }
 
     it 'should set that data dir on the sources' do
-      subject.cedict.data_dir.should == '/test/123'
+      subject.cedict.data_dir.should == data_dir
     end
   end
 
