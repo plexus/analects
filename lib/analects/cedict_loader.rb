@@ -9,9 +9,9 @@ module Analects
     def initialize( input )
       @input = File.exist?( input ) ? File.open( input ) : input
       @headers = {}
-      @input.lines.each do |line|
+      @input.each_line do |line|
         if line =~ /^#! (.*)=(.*)/
-          @headers[$1.strip] = $2.strip 
+          @headers[$1.strip] = $2.strip
         end
         break unless line =~ /^#/
       end
@@ -23,7 +23,7 @@ module Analects
 
     def each
       if block_given?
-        @input.lines.each do |line|
+        @input.each_line do |line|
           yield process_input(line) if line !~ /^#/
         end
       else

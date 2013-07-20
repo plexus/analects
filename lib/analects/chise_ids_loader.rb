@@ -38,13 +38,13 @@ module Analects
 
     def enum_lines(&blk)
       if @contents
-        @contents.lines.each do |l|
+        @contents.each_line do |l|
           next if l =~ /^#/
           yield l
         end
       else
         files.each do |f|
-          File.open(f).lines.each do |l|
+          File.open(f).each_line do |l|
             next if l =~ /^#/
             yield l
           end
