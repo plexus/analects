@@ -4,7 +4,8 @@ module Analects
 
   class Library
     attr_reader :options
-    def initialize(options)
+
+    def initialize(options = {})
       @options = options.freeze
     end
 
