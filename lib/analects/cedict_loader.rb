@@ -6,8 +6,8 @@ module Analects
 
     attr_reader :headers
 
-    def initialize( input )
-      @input = File.exist?( input ) ? File.open( input ) : input
+    def initialize(input)
+      @input = File.exist?(input) ? File.read(input) : input
       @headers = {}
       @input.each_line do |line|
         if line =~ /^#! (.*)=(.*)/
@@ -18,7 +18,7 @@ module Analects
     end
 
     def field_names
-      [ :traditional, :simplified, :pinyin, :definitions ]
+      [:traditional, :simplified, :pinyin, :definitions]
     end
 
     def each

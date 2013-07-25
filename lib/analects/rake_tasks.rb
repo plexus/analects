@@ -7,7 +7,6 @@ module Analects
     end
 
     def library
-      p options
       @library ||= Analects::Library.new(options)
     end
 

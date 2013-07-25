@@ -22,7 +22,7 @@ module Analects
     end
 
     def cedict
-      Source.new(
+      @cedict ||= Source.new(
         {
           data_file: 'cedict_1_0_ts_utf-8_mdbg.txt',
           retrieval: [ :http, :gunzip, :save ]
@@ -31,7 +31,11 @@ module Analects
     end
 
     def chise_ids
-      Source.new({retrieval: :git}.merge(options_for :chise_ids))
+      @chise_ids ||= Source.new(
+        {
+          retrieval: :git
+        }.merge(options_for :chise_ids)
+      )
     end
 
     private
@@ -44,7 +48,6 @@ module Analects
         data_dir: data_dir
       }.merge(options.fetch(name, {}))
     end
-
 
   end
 end

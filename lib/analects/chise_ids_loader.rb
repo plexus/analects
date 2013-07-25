@@ -7,7 +7,7 @@ module Analects
 
     def initialize(location_or_contents, only_unicode = true)
       if location_or_contents =~ /\n/
-        @contents = location_or_contents
+        @contents = location_or_contents.each_line.to_a
       else
         @location = location_or_contents
         @contents = nil
@@ -37,18 +37,12 @@ module Analects
     end
 
     def enum_lines(&blk)
-      if @contents
-        @contents.each_line do |l|
-          next if l =~ /^#/
-          yield l
-        end
-      else
-        files.each do |f|
-          File.open(f).each_line do |l|
-            next if l =~ /^#/
-            yield l
-          end
-        end
+      @contents ||= files.flat_map do |f|
+        File.open(f).each_line.to_a
+      end
+      @contents.each do |l|
+        next if l =~ /^#/
+        yield l
       end
     end
   end

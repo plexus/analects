@@ -7,10 +7,13 @@ module Analects
       @options = options
     end
 
-    def name      ; options[:name]                ; end
-    def url       ; options[:url]                 ; end
-    def retrieval ; Array(  options[:retrieval] ) ; end
-    def loader    ; options[:loader]              ; end
+    def name      ; options[:name]                 ; end
+    def url       ; options[:url]                  ; end
+    def retrieval ; Array(  options[:retrieval] )  ; end
+
+    def loader
+      @loader ||= options[:loader].new(location)
+    end
 
     def data_dir
       options[:data_dir]
@@ -60,7 +63,7 @@ module Analects
 
     def each(&block)
       return to_enum unless block_given?
-      loader.new(location).each(&block)
+      loader.each(&block)
     end
 
   end
