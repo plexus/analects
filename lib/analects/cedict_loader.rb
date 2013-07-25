@@ -6,10 +6,10 @@ module Analects
 
     attr_reader :headers
 
-    def initialize(input)
-      @input = File.exist?(input) ? File.read(input) : input
+    def initialize(io)
+      @contents = io.read
       @headers = {}
-      @input.each_line do |line|
+      @contents.each_line do |line|
         if line =~ /^#! (.*)=(.*)/
           @headers[$1.strip] = $2.strip
         end
@@ -23,8 +23,8 @@ module Analects
 
     def each
       if block_given?
-        @input.each_line do |line|
-          yield process_input(line) if line !~ /^#/
+        @contents.each_line do |line|
+          yield process_contents(line) if line !~ /^#/
         end
       else
         enum_for(:each)
@@ -33,13 +33,12 @@ module Analects
 
     private
 
-    def process_input(line)
+    def process_contents(line)
       if line.strip =~ /^([^\s]*) ([^\s]*) \[([\w\d:,· ]+)\](.*)/
         [$1,$2,$3,$4].map{|x| x.strip}
       else
-        raise "Unexpected input : #{line.inspect}"
+        raise "Unexpected contents : #{line.inspect}"
       end
     end
-
   end
 end
