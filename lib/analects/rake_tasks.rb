@@ -1,8 +1,14 @@
 module Analects
   class RakeTasks < Rake::TaskLib
-    def initialize name = :analects
+    def initialize(name = :analects, &blk)
       @name = name
-      yield self if block_given?
+      if block_given?
+        if blk.arity == 0
+          self.instance_eval(&blk)
+        else
+          yield self
+        end
+      end
       define
     end
 

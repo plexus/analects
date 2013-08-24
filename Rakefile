@@ -9,6 +9,5 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 
 require 'analects'
-require 'analects/rake_tasks'
 
-Analects::RakeTasks.new
+Analects.init_rake_tasks
