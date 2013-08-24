@@ -6,6 +6,15 @@ rvm:
   - jruby-19mode
   - rbx-19mode
   - jruby-head
-disabled:
   - ruby-head
-script: bundle exec rspec spec
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
+notifications:
+  email:
+    recipients:
+      - arne@arnebrasseur.net
+    on_success: never
+    on_failure: change
+script: bundle exec rake ci:metrics
