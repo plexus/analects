@@ -1,7 +1,17 @@
 analects.rb
 ===========
 
-[![Build Status](https://travis-ci.org/plexus/analects.png)](https://travis-ci.org/lexus/analects)
+[![Gem Version](https://badge.fury.io/rb/analects.png)][gem]
+[![Build Status](https://secure.travis-ci.org/plexus/analects.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/plexus/analects.png)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/plexus/analects.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/plexus/analects/badge.png?branch=master)][coveralls]
+
+[gem]: https://rubygems.org/gems/analects
+[travis]: https://travis-ci.org/plexus/analects
+[gemnasium]: https://gemnasium.com/plexus/analects
+[codeclimate]: https://codeclimate.com/github/plexus/analects
+[coveralls]: https://coveralls.io/r/plexus/analects
 
 Public datasets on the Chinese language, accessible from Ruby
 
