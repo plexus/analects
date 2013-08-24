@@ -23,8 +23,14 @@ With Rake
 # Rakefile
 require 'analects/rake_tasks'
 
-Analects::RakeTasks.new do |analects|
-  analects.data_dir '/tmp/analects' # defaults to ~/.analects
+Analects.init_rake_tasks do
+  data_dir '/tmp/analects' # defaults to ~/.analects
+
+  task :import_cedict do
+    library.cedict.each do |entry|
+      # ..
+    end
+  end
 end
 ```
 
