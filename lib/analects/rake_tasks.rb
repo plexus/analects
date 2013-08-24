@@ -1,3 +1,5 @@
+require 'rake/tasklib'
+
 module Analects
   class RakeTasks < Rake::TaskLib
     def initialize(name = :analects, &blk)
