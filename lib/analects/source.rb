@@ -3,13 +3,13 @@ module Analects
     include Enumerable
     attr_reader :options
 
-    def initialize( options = {} )
+    def initialize(options = {})
       @options = options
     end
 
-    def name      ; options[:name]                 ; end
-    def url       ; options[:url]                  ; end
-    def retrieval ; Array(  options[:retrieval] )  ; end
+    def name      ; options[:name]              ; end
+    def url       ; options[:url]               ; end
+    def retrieval ; Array(options[:retrieval])  ; end
 
     def loader
       @loader ||= options[:loader].new(location)
