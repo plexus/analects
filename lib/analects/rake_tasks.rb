@@ -28,7 +28,7 @@ module Analects
 
     def define
       namespace @name do
-        namespace :retrieve do
+        namespace :download do
           desc 'download CC-CEDICT'
           task :cedict do
             library.cedict.retrieve

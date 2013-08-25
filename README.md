@@ -35,9 +35,9 @@ end
 ```
 
 ```sh
-rake analects:retrieve:all        # download all sources
-rake analects:retrieve:cedict     # download CC-CEDICT
-rake analects:retrieve:chise_ids  # download Chise-IDS
+rake analects:download:all        # download all sources
+rake analects:download:cedict     # download CC-CEDICT
+rake analects:download:chise_ids  # download Chise-IDS
 ```
 
 Or from Ruby
