@@ -5,4 +5,6 @@ group :development, :test do
   eval_gemfile 'Gemfile.devtools'
 end
 
+gem 'rmmseg'   , github: 'plexus/rmmseg'
+
 gemspec

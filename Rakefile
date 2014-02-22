@@ -11,3 +11,6 @@ task :default => :spec
 require 'analects'
 
 Analects.init_rake_tasks
+
+require 'rubygems/tasks'
+Gem::Tasks.new
