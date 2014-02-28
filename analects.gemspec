@@ -18,10 +18,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('simplecov')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('rubygems-tasks')
+  spec.add_development_dependency('pry')
 
   spec.add_runtime_dependency('activesupport', '>= 3.1')
   spec.add_runtime_dependency('rom')
   spec.add_runtime_dependency('rmmseg')
+  spec.add_runtime_dependency('ting')
 
   spec.require_path = 'lib'
   spec.files        = Dir.glob('**/*.rb') + %w(README.md)
