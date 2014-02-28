@@ -27,6 +27,10 @@ module Analects
           :range => 0x2F800 .. 0x2FA1F, # 0x2FA1E..0x2FA1F have no Unihan data
           :sort_diff => -0x10000
         },
+        radicals_supplement:
+        { name: "CJK Radicals supplement",
+          range: 0x2E80 .. 0x2EFF
+        },
         kangxi_radicals:
         { name: "Kangxi Radicals",
           range: 0x2F00 .. 0x2FDF
@@ -36,6 +40,19 @@ module Analects
       def self.codepoint_ranges
         RANGES.values.map{|v| v[:range]}
       end
+
+      # Regexp that matches a single CJK character
+      REGEXP = Regexp.union(
+        codepoint_ranges.map { |range|
+          Regexp.new('[\u{%s}-\u{%s}]' % [ range.begin.to_s(16), range.end.to_s(16) ])
+        }
+      )
+
+      ANTIREGEXP = Regexp.new(
+        '[^'+
+        codepoint_ranges.map { |range| '\u{%s}-\u{%s}' % [ range.begin.to_s(16), range.end.to_s(16) ] }.join +
+        ']'
+      )
 
       def self.each_radical(&block)
         RANGES[:kangxi_radicals][:range].each do |codepoint|

@@ -12,7 +12,7 @@ module Analects
     def retrieval ; Array(options[:retrieval])  ; end
 
     def loader
-      @loader ||= options[:loader].new(File.open(location))
+      @loader ||= options[:loader].new(Pathname(location))
     end
 
     def data_dir

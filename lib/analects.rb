@@ -1,8 +1,11 @@
 require 'tmpdir'
+require 'pathname'
 
 require 'active_support/core_ext/string/inflections'
 require 'ice_nine'
 require 'rmmseg'
+require 'ting'
+require 'delegate'
 
 module Analects
   def self.init_rake_tasks(*args, &blk)
@@ -16,6 +19,8 @@ module Analects
     end
   end
 end
+
+require 'cjk_string'
 
 require 'analects/version'
 require 'analects/encoding'

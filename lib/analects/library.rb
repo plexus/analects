@@ -1,6 +1,7 @@
 module Analects
   CEDICT_URL      = 'http://www.mdbg.net/chindict/export/cedict/cedict_1_0_ts_utf-8_mdbg.txt.gz'
   CHISE_IDS_URL   = 'http://git.chise.org/git/chise/ids.git'
+  # HSK_URL
 
   class Library
     attr_reader :options
@@ -37,6 +38,12 @@ module Analects
         }.merge(options_for :chise_ids)
       )
     end
+
+    # def hsk
+    #   @hsk ||= Source.new(
+
+    #   ).merge(options_for :hsk)
+    # end
 
     private
 
