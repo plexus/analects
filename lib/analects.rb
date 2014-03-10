@@ -1,11 +1,11 @@
 require 'tmpdir'
 require 'pathname'
+require 'delegate'
 
-require 'active_support/core_ext/string/inflections'
+require 'inflecto'
 require 'ice_nine'
 require 'rmmseg'
 require 'ting'
-require 'delegate'
 
 module Analects
   def self.init_rake_tasks(*args, &blk)

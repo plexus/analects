@@ -31,12 +31,12 @@ module Analects
         namespace :download do
           desc 'download CC-CEDICT'
           task :cedict do
-            library.cedict.retrieve
+            library.cedict.retrieve!
           end
 
           desc 'download Chise-IDS'
           task :chise_ids do
-            library.chise_ids.retrieve
+            library.chise_ids.retrieve!
           end
 
           desc 'download all sources'

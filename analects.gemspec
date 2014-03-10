@@ -1,30 +1,28 @@
 
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
+require File.expand_path('../lib/analects/version', __FILE__)
 
-require 'analects/version'
+Gem::Specification.new do |gem|
+  gem.name        = 'analects'
+  gem.version     = Analects::VERSION
+  gem.platform    = Gem::Platform::RUBY
+  gem.authors     = ['Arne Brasseur']
+  gem.email       = ['arne.brasseur@gmail.com']
+  gem.homepage    = 'https://github.com/arnebrasseur/analects.rb'
+  gem.license     = 'GPL-3.0'
+  gem.summary     = 'Toolkit for Mandarin language learning apps'
+  gem.description = gem.summary
 
-Gem::Specification.new do |spec|
-  spec.name        = 'analects'
-  spec.version     = Analects::VERSION
-  spec.platform    = Gem::Platform::RUBY
-  spec.authors     = ['Arne Brasseur']
-  spec.email       = ['arne.brasseur@gmail.com']
-  spec.homepage    = 'https://github.com/arnebrasseur/analects.rb'
-  spec.summary     =
-  spec.description = 'Open source data sets on Chinese accessible from Ruby'
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rubygems-tasks'
+  gem.add_development_dependency 'pry'
 
-  spec.add_development_dependency('rspec')
-  spec.add_development_dependency('simplecov')
-  spec.add_development_dependency('rake')
-  spec.add_development_dependency('rubygems-tasks')
-  spec.add_development_dependency('pry')
+  gem.add_runtime_dependency 'inflecto', '~> 0.0.2'
+  gem.add_runtime_dependency 'rmmseg'
+  gem.add_runtime_dependency 'ting', '~> 0.9.0'
+  gem.add_runtime_dependency 'ice_nine'
 
-  spec.add_runtime_dependency('activesupport', '>= 3.1')
-  spec.add_runtime_dependency('rom')
-  spec.add_runtime_dependency('rmmseg')
-  spec.add_runtime_dependency('ting')
-
-  spec.require_path = 'lib'
-  spec.files        = Dir.glob('**/*.rb') + %w(README.md)
+  gem.require_path = 'lib'
+  gem.files        = Dir.glob('**/*.rb') + %w(README.md)
 end

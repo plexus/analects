@@ -1,7 +1,8 @@
 module Analects
   CEDICT_URL      = 'http://www.mdbg.net/chindict/export/cedict/cedict_1_0_ts_utf-8_mdbg.txt.gz'
   CHISE_IDS_URL   = 'http://git.chise.org/git/chise/ids.git'
-  # HSK_URL
+  UNIHAN_URL      = ''
+  HSK_URL         = ''
 
   class Library
     attr_reader :options
@@ -39,6 +40,13 @@ module Analects
       )
     end
 
+    def unihan
+      @unihan ||= Source.new(
+        {
+          data_file: ''
+        }.merge(options_for :chise_ids)
+      )
+    end
     # def hsk
     #   @hsk ||= Source.new(
 
@@ -51,7 +59,7 @@ module Analects
       {
         name: name,
         url: Analects.const_get("#{name.to_s.upcase}_URL"),
-        loader: Analects.const_get("#{name.to_s.camelize}Loader"),
+        loader: Analects.const_get("#{Inflecto.camelize name}Loader"),
         data_dir: data_dir
       }.merge(options.fetch(name, {}))
     end
