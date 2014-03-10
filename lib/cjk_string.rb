@@ -16,6 +16,36 @@ class CJKString < DelegateClass(String)
   end
 end
 
+class CJKChar < DelegateClass(String)
+  def unicode_range
+    Analects::Models::Zi::RANGES.each do |name, info|
+      return name if info[:range].include? codepoint
+    end
+  end
+
+  def unicode_range_name
+    Analects::Models::Zi::RANGES[unicode_range][:name]
+  end
+
+  def codepoint
+    codepoints.first
+  end
+end
+
+def CJKChar(str)
+  return str if str.is_a? CJKChar
+
+  if str.length > 1
+    if str =~ /^(U\+)?([0-9A-Fa-f]+)/
+      str = [$2].pack('U')
+    else
+      raise ArgumentError, 'CJKChar must have length one'
+    end
+  end
+
+  CJKChar.new(str)
+end
+
 def CJKString(str)
   if str.is_a? CJKString
     return str
