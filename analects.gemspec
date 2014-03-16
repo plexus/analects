@@ -1,4 +1,3 @@
-
 require File.expand_path('../lib/analects/version', __FILE__)
 
 Gem::Specification.new do |gem|
@@ -12,6 +11,11 @@ Gem::Specification.new do |gem|
   gem.summary     = 'Toolkit for Mandarin language learning apps'
   gem.description = gem.summary
 
+  gem.require_paths    = %w[lib]
+  gem.files            = `git ls-files`.split($/)
+  gem.test_files       = `git ls-files -- spec`.split($/)
+  gem.extra_rdoc_files = %w[README.md]
+
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'rake'
@@ -22,7 +26,4 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rmmseg'
   gem.add_runtime_dependency 'ting', '~> 0.9.0'
   gem.add_runtime_dependency 'ice_nine'
-
-  gem.require_path = 'lib'
-  gem.files        = Dir.glob('**/*.rb') + %w(README.md)
 end
