@@ -8,6 +8,8 @@ require 'rmmseg'
 require 'ting'
 
 module Analects
+  ROOT = Pathname(__FILE__).dirname.parent
+
   def self.init_rake_tasks(*args, &blk)
     require 'analects/rake_tasks'
     Analects::RakeTasks.new(*args, &blk)

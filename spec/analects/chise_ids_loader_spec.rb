@@ -3,25 +3,11 @@ require 'spec_helper'
 
 describe Analects::ChiseIdsLoader do
   subject(:loader) do
-    Analects::ChiseIdsLoader.new(StringIO.new(contents), only_unicode)
-  end
-
-  let(:contents) do
-    '# -*- coding: utf-8 -*-
-    U+4E0D	不	不
-    U+4E0E	与	⿹&CDP-8BBF;一
-    U+4E12	丒	⿱刃一
-    U+4E15	丕	⿱不一
-    Entry without a tab
-    U+4E19	丙	⿱一内
-    CB00001	&I-CB00001;	⿰𠤕欠
-    CB00002	&CB00002;	⿰⿱匕示頁
-    CB00003	&CB00003;	⿱㓛&GT-47348;'.gsub(/^\s*/,'')
+    Analects::ChiseIdsLoader.new(Analects::ROOT.join('spec/test_data/chise_ids'), only_unicode)
   end
 
   let(:only_unicode) { false }
   let(:entries) { loader.each.to_a }
-
 
   describe '#field_names' do
     it 'should return names for the fields in an IDS record' do
