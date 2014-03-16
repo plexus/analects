@@ -5,13 +5,11 @@ analects.rb
 [![Build Status](https://secure.travis-ci.org/plexus/analects.png?branch=master)][travis]
 [![Dependency Status](https://gemnasium.com/plexus/analects.png)][gemnasium]
 [![Code Climate](https://codeclimate.com/github/plexus/analects.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/plexus/analects/badge.png?branch=master)][coveralls]
 
 [gem]: https://rubygems.org/gems/analects
 [travis]: https://travis-ci.org/plexus/analects
 [gemnasium]: https://gemnasium.com/plexus/analects
 [codeclimate]: https://codeclimate.com/github/plexus/analects
-[coveralls]: https://coveralls.io/r/plexus/analects
 
 Public datasets on the Chinese language, accessible from Ruby
 
@@ -50,7 +48,7 @@ analects.chise_ids.retrieve
 
 ## Use the data
 
-```
+```ruby
 analects = Analects::Library.new(data_dir: '/tmp/analects')
 analects.cedict.take(3)
 # => [["AA制", "AA制", "A A zhi4", "/to split the bill/to go Dutch/"], ["A咖", "A咖", "A ka1", "/class \"A\"/top grade/"], ["A片", "A片", "A pian4", "/adult movie/pornography/"]]
@@ -58,3 +56,26 @@ analects.cedict.take(3)
 analects.chise_ids.to_a.sample(3)
 # [["U+59BF", "妿", "⿱加女"], ["U-0002441B", "𤐛", "⿰火閙"], ["U+83A1", "莡", "⿱艹足"]]
 ```
+
+## Other stuff
+
+Analects wraps RMMSeg for easy segmenting of Chinese text
+
+```ruby
+Analects::Tokenizer.new.tokenize("为待那个朋友拿哟出来，咿呀噢哎…")
+# => ["为", "待", "那个", "朋友", "拿", "哟", "出来", "，", "咿", "呀", "噢", "哎", "…"]
+```
+
+If you have Chinese text in GB or BIG5 encoding, you can do stuff like this
+
+```ruby
+Analects::Encoding.valid_cjk(str)
+Analects::Encoding.from_gb(str)   # returns UTF-8
+Analects::Encoding.from_big5(str) # returns UTF-8
+```
+
+## License
+
+Copyright ⓒ Arne Brasseur 2012-2014
+
+Licensed as GPL-v3

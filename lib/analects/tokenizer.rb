@@ -49,5 +49,6 @@ module Analects
         end
       end
     end
+    alias call tokenize
   end
 end
