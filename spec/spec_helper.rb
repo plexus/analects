@@ -11,7 +11,7 @@ if ENV['COVERAGE'] == 'true'
 
   SimpleCov.start do
     command_name 'spec:unit'
-    minimum_coverage 86.22
+    minimum_coverage 72.64
   end
 end
 
