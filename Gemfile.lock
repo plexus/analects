@@ -1,16 +1,4 @@
 GIT
-  remote: git://github.com/plexus/rmmseg.git
-  revision: 73fb91682ddf955e6e72722cc3f2adbecaf7508d
-  specs:
-    rmmseg (0.1.6)
-
-GIT
-  remote: git://github.com/plexus/ting.git
-  revision: 63491759a6b40c8dddc7aadcf16fce833ea107ba
-  specs:
-    ting (0.9.0)
-
-GIT
   remote: https://github.com/rom-rb/devtools.git
   revision: 62d3fa16941e5b61e1e8bb520a1b40d6179aebf5
   specs:
@@ -178,6 +166,7 @@ GEM
     thread_safe (0.2.0)
       atomic (>= 1.1.7, < 2)
     timers (1.1.0)
+    ting (0.9.0)
     unparser (0.1.9)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.1)
@@ -220,7 +209,6 @@ DEPENDENCIES
   rb-notifu (~> 0.0.4)
   rbench (~> 0.2.3)
   reek (~> 1.3.2)
-  rmmseg!
   rspec (~> 2.14.1)
   rspec-core (~> 2.14.8)
   rubocop (~> 0.18.1)
@@ -231,7 +219,6 @@ DEPENDENCIES
   rubysl-singleton (~> 2.0.0)
   simplecov (~> 0.8.2)
   terminal-notifier-guard (~> 1.5.3)
-  ting!
   yard (~> 0.8.7)
   yard-spellcheck (~> 0.1.5)
   yardstick (~> 0.9.9)
