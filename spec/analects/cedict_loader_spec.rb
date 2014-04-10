@@ -14,7 +14,7 @@ describe Analects::CedictLoader do
 '
   end
 
-  let ( :cedict_loader ) { Analects::CedictLoader.new( StringIO.new(contents) ) }
+  let ( :cedict_loader ) { Analects::CedictLoader.new( StringIO.new(contents), nil ) }
 
   it "should parse headers" do
     cedict_loader.headers.should == { 'charset' => 'UTF-8', 'entries' => '104941' }

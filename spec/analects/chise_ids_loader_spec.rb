@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Analects::ChiseIdsLoader do
   subject(:loader) do
-    Analects::ChiseIdsLoader.new(Analects::ROOT.join('spec/test_data/chise_ids'), only_unicode)
+    Analects::ChiseIdsLoader.new(Analects::ROOT.join('spec/test_data/chise_ids'), nil, only_unicode)
   end
 
   let(:only_unicode) { false }
