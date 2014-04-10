@@ -47,17 +47,20 @@ module Analects
         }.merge(options_for :chise_ids)
       )
     end
-    # def hsk
-    #   @hsk ||= Source.new(
 
-    #   ).merge(options_for :hsk)
-    # end
+    def hsk
+      @hsk ||= Source.new( {
+          data_file: 'hsk.csv'
+        }.merge(options_for :hsk)
+      )
+    end
 
     private
 
     def options_for(name)
       {
         name: name,
+        library: self,
         url: Analects.const_get("#{name.to_s.upcase}_URL"),
         loader: Analects.const_get("#{Inflecto.camelize name}Loader"),
         data_dir: data_dir

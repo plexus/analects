@@ -14,7 +14,7 @@ module Analects
       end
     end
 
-    def initialize(pathname, only_unicode = true)
+    def initialize(pathname, library, only_unicode = true)
       @contents = MultiFile.new(pathname.children.select{|ch| ch.to_s =~ /IDS-.*\.txt/})
       @only_unicode = only_unicode
     end

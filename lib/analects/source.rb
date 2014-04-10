@@ -7,12 +7,13 @@ module Analects
       @options = options
     end
 
+    def library   ; options[:library]           ; end
     def name      ; options[:name]              ; end
     def url       ; options[:url]               ; end
     def retrieval ; Array(options[:retrieval])  ; end
 
     def loader
-      @loader ||= options[:loader].new(Pathname(location))
+      @loader ||= options[:loader].new(Pathname(location), library)
     end
 
     def data_dir
