@@ -36,6 +36,8 @@ end
 rake analects:download:all        # download all sources
 rake analects:download:cedict     # download CC-CEDICT
 rake analects:download:chise_ids  # download Chise-IDS
+rake analects:download:hsk        # download HSK data
+rake analects:download:unihan     # download Unihan database
 ```
 
 Or from Ruby
