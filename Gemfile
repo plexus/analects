@@ -5,6 +5,6 @@ group :development, :test do
   eval_gemfile 'Gemfile.devtools'
 end
 
-gem 'rubyzip' , path: '/home/arne/github/rubyzip'
+#gem 'rubyzip' , path: '/home/arne/github/rubyzip'
 
 gemspec

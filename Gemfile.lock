@@ -14,11 +14,6 @@ PATH
       rubyzip (~> 1.1)
       ting (~> 0.9.0)
 
-PATH
-  remote: /home/arne/github/rubyzip
-  specs:
-    rubyzip (1.1.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -159,6 +154,7 @@ GEM
     rubysl-open-uri (2.0.0)
     rubysl-prettyprint (2.0.3)
     rubysl-singleton (2.0.0)
+    rubyzip (1.1.0)
     sexp_processor (4.4.2)
     simplecov (0.8.2)
       docile (~> 1.1.0)
@@ -221,7 +217,6 @@ DEPENDENCIES
   rubysl-open-uri (~> 2.0.0)
   rubysl-prettyprint (~> 2.0.2)
   rubysl-singleton (~> 2.0.0)
-  rubyzip!
   simplecov (~> 0.8.2)
   terminal-notifier-guard (~> 1.5.3)
   yard (~> 0.8.7)
