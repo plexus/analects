@@ -18,6 +18,10 @@ module Analects
       @library ||= Analects::Library.new(options)
     end
 
+    def sources
+      library.sources
+    end
+
     def options
       @options ||= {}
     end
@@ -29,18 +33,15 @@ module Analects
     def define
       namespace @name do
         namespace :download do
-          desc 'download CC-CEDICT'
-          task :cedict do
-            library.cedict.retrieve!
-          end
-
-          desc 'download Chise-IDS'
-          task :chise_ids do
-            library.chise_ids.retrieve!
+          sources.each do |source|
+            desc "download #{source.name}"
+            task source.name do
+              source.retrieve!
+            end
           end
 
           desc 'download all sources'
-          task :all => [:cedict, :chise_ids]
+          task :all => sources.map(&:name)
         end
       end
 

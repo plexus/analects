@@ -1,6 +1,5 @@
 require 'rspec/core/rake_task'
 require 'devtools'
-require 'rubygems/tasks'
 require 'rubygems/package_task'
 
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
@@ -11,8 +10,6 @@ Analects.init_rake_tasks
 
 RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
-
-Gem::Tasks.new
 
 spec = Gem::Specification.load(File.expand_path('../analects.gemspec', __FILE__))
 gem = Gem::PackageTask.new(spec)

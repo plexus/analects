@@ -16,14 +16,13 @@ Gem::Specification.new do |gem|
   gem.test_files       = `git ls-files -- spec`.split($/)
   gem.extra_rdoc_files = %w[README.md]
 
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'simplecov'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rubygems-tasks'
-  gem.add_development_dependency 'pry'
-
   gem.add_runtime_dependency 'inflecto'      , '~> 0.0.2'
   gem.add_runtime_dependency 'plexus-rmmseg' , '~> 0.1.6'
   gem.add_runtime_dependency 'ting'          , '~> 0.9.0'
   gem.add_runtime_dependency 'ice_nine'      , '~> 0.11.0'
+  gem.add_runtime_dependency 'rubyzip'       , '~> 1.1'
+
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'pry'
 end

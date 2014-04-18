@@ -11,7 +11,13 @@ PATH
       ice_nine (~> 0.11.0)
       inflecto (~> 0.0.2)
       plexus-rmmseg (~> 0.1.6)
+      rubyzip (~> 1.1)
       ting (~> 0.9.0)
+
+PATH
+  remote: /home/arne/github/rubyzip
+  specs:
+    rubyzip (1.1.3)
 
 GEM
   remote: https://rubygems.org/
@@ -149,7 +155,6 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.4.1)
       sexp_processor (~> 4.1)
-    rubygems-tasks (0.2.4)
     rubysl-logger (2.0.0)
     rubysl-open-uri (2.0.0)
     rubysl-prettyprint (2.0.3)
@@ -212,11 +217,11 @@ DEPENDENCIES
   rspec (~> 2.14.1)
   rspec-core (~> 2.14.8)
   rubocop (~> 0.18.1)
-  rubygems-tasks
   rubysl-logger (~> 2.0.0)
   rubysl-open-uri (~> 2.0.0)
   rubysl-prettyprint (~> 2.0.2)
   rubysl-singleton (~> 2.0.0)
+  rubyzip!
   simplecov (~> 0.8.2)
   terminal-notifier-guard (~> 1.5.3)
   yard (~> 0.8.7)

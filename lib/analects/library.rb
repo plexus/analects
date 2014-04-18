@@ -1,8 +1,9 @@
 module Analects
-  CEDICT_URL      = 'http://www.mdbg.net/chindict/export/cedict/cedict_1_0_ts_utf-8_mdbg.txt.gz'
-  CHISE_IDS_URL   = 'http://git.chise.org/git/chise/ids.git'
-  UNIHAN_URL      = ''
-  HSK_URL         = ''
+  CEDICT_URL        = 'http://www.mdbg.net/chindict/export/cedict/cedict_1_0_ts_utf-8_mdbg.txt.gz'
+  CHISE_IDS_URL     = 'http://git.chise.org/git/chise/ids.git'
+  UNIHAN_URL        = 'http://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip'
+  HSK_URL           = 'https://raw.githubusercontent.com/plexus/analects-data/master/hsk/hsk.csv'
+  TW_CURRICULUM_URL = 'https://raw.githubusercontent.com/plexus/analects-data/master/taiwan_school_curriculum.txt'
 
   class Library
     attr_reader :options
@@ -23,48 +24,59 @@ module Analects
       end
     end
 
+    def sources
+      [
+        cedict,
+        chise_ids,
+        unihan,
+        hsk
+      ]
+    end
+
     def cedict
-      @cedict ||= Source.new(
-        {
-          data_file: 'cedict_1_0_ts_utf-8_mdbg.txt',
-          retrieval: [ :http, :gunzip, :save ]
-        }.merge(options_for :cedict)
+      @cedict ||= create_source(
+        :cedict,
+        data_file: 'cedict_1_0_ts_utf-8_mdbg.txt',
+        retrieval: [ :http, :gunzip, :save ]
       )
     end
 
     def chise_ids
-      @chise_ids ||= Source.new(
-        {
-          retrieval: :git
-        }.merge(options_for :chise_ids)
+      @chise_ids ||= create_source(
+        :chise_ids,
+        retrieval: :git
       )
     end
 
     def unihan
-      @unihan ||= Source.new(
-        {
-          data_file: ''
-        }.merge(options_for :chise_ids)
+      @unihan ||= create_source(
+        :unihan,
+        retrieval: [ :http, :unzip ]
       )
     end
 
     def hsk
-      @hsk ||= Source.new( {
-          data_file: 'hsk.csv'
-        }.merge(options_for :hsk)
+      @hsk ||= create_source(
+        :hsk,
+        data_file: 'hsk.csv',
+        retrieval: [ :http, :save ]
       )
     end
 
     private
 
-    def options_for(name)
-      {
-        name: name,
-        library: self,
-        url: Analects.const_get("#{name.to_s.upcase}_URL"),
-        loader: Analects.const_get("#{Inflecto.camelize name}Loader"),
-        data_dir: data_dir
-      }.merge(options.fetch(name, {}))
+    def create_source(name, source_options)
+      Source.new(
+        source_options.merge(
+          {
+            name: name,
+            library: self,
+            url: Analects.const_get("#{name.to_s.upcase}_URL"),
+            loader: Analects.const_get("#{Inflecto.camelize name}Loader"),
+            data_dir: data_dir
+          }
+        ).merge(options.fetch(name, {}))
+      )
     end
 
   end

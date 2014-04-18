@@ -8,7 +8,7 @@ describe Analects::Library do
   subject(:library) {
     described_class.new(options)
   }
-  let(:data_dir) { File.join(Dir.tmpdir, 'analects-' + SecureRandom.hex(16)) }
+  let(:data_dir) { Pathname(Dir.tmpdir).join('analects-' + SecureRandom.hex(16)) }
   let(:options) {
     { data_dir: data_dir }
   }
