@@ -6,6 +6,7 @@ require 'inflecto'
 require 'ice_nine'
 require 'rmmseg'
 require 'ting'
+require 'set'
 
 module Analects
   ROOT = Pathname(__FILE__).dirname.parent
