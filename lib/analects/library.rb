@@ -4,6 +4,7 @@ module Analects
   UNIHAN_URL        = 'http://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip'
   HSK_URL           = 'https://raw.githubusercontent.com/plexus/analects-data/master/hsk/hsk.csv'
   TW_CURRICULUM_URL = 'https://raw.githubusercontent.com/plexus/analects-data/master/taiwan_school_curriculum.txt'
+  CJK_DECOMP_URL    = ''
 
   class Library
     attr_reader :options
@@ -60,6 +61,13 @@ module Analects
         :hsk,
         data_file: 'hsk.csv',
         retrieval: [ :http, :save ]
+      )
+    end
+
+    def cjk_decomp
+      @hsk ||= create_source(
+        :cjk_decomp,
+        data_file: 'cjk-decomp-0.4.0.txt'
       )
     end
 

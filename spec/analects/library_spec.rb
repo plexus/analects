@@ -15,7 +15,7 @@ describe Analects::Library do
 
   context 'with a data_dir specified' do
     it 'should set that data dir on the sources' do
-      subject.cedict.data_dir.should == data_dir
+      expect(subject.cedict.data_dir).to eql data_dir
     end
   end
 
@@ -25,15 +25,15 @@ describe Analects::Library do
     its(:name)     { should == :cedict }
 
     it "should download and unpack the CEDICT archive" do
-      cedict.should_receive(:retrieve_http).once.with(Analects::CEDICT_URL).and_return(:a_stream)
-      cedict.should_receive(:retrieve_gunzip).once.with(:a_stream).and_return(:an_unzipped_stream)
+      expect(cedict).to receive(:retrieve_http).once.with(Analects::CEDICT_URL).and_return(:a_stream)
+      expect(cedict).to receive(:retrieve_gunzip).once.with(:a_stream).and_return(:an_unzipped_stream)
 
       cedict.retrieve!
     end
   end
 
   it "should have a CHISE IDS source" do
-    library.chise_ids.name.should == :chise_ids
+    expect(library.chise_ids.name).to equal :chise_ids
   end
 
   describe "#chise_ids" do

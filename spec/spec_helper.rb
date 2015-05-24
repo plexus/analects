@@ -15,5 +15,5 @@ if ENV['COVERAGE'] == 'true'
   end
 end
 
-require 'devtools/spec_helper'
+require 'rspec/its'
 require 'analects'

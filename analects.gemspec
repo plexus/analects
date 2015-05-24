@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rubyzip'       , '~> 1.1'
 
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rspec-its'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'pry'
 end
