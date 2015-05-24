@@ -7,10 +7,21 @@ module Analects
       @options = options
     end
 
-    def library   ; options[:library]           ; end
-    def name      ; options[:name]              ; end
-    def url       ; options[:url]               ; end
-    def retrieval ; Array(options[:retrieval])  ; end
+    def library
+      options[:library]
+    end
+
+    def name
+      options[:name]
+    end
+
+    def url
+      options[:url]
+    end
+
+    def retrieval
+      Array(options[:retrieval])
+    end
 
     def loader
       @loader ||= options[:loader].new(Pathname(location), library)
@@ -35,8 +46,8 @@ module Analects
     end
 
     def retrieve!
-      retrieval.inject(url) do | result, method |
-        self.send( "retrieve_#{method}", result )
+      retrieval.inject(url) do |result, method|
+        send("retrieve_#{method}", result)
       end
     end
 
@@ -67,8 +78,8 @@ module Analects
 
     # stream|string -> create data file
     def retrieve_save(data)
-      File.open( location, 'w' ) do |f|
-        f << ( data.respond_to?(:read) ? data.read : data )
+      File.open(location, 'w') do |f|
+        f << (data.respond_to?(:read) ? data.read : data)
       end
     end
 
@@ -81,6 +92,5 @@ module Analects
       return to_enum unless block_given?
       loader.each(&block)
     end
-
   end
 end

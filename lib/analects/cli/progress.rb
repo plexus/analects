@@ -16,20 +16,20 @@ module Analects
 
       def next
         @current += 1
-        draw if (@current % (Float(@total)/@accuracy).ceil) == 0 || @current == @total
+        draw if (@current % (Float(@total) / @accuracy).ceil) == 0 || @current == @total
       end
 
       def draw
         x = pos(@length).floor
         total_count = @count == 100 ? '%' : "/#{@count}"
-        print "\e[%dD\e[32m%s[\e[31m%s%s\e[32m]\e[34m %d%s\e[0m" % [@length+10+@prefix.length, @prefix, '='*x, ' '*(@length-x), pos(@count), total_count]
+        print "\e[%dD\e[32m%s[\e[31m%s%s\e[32m]\e[34m %d%s\e[0m" % [@length + 10 + @prefix.length, @prefix, '=' * x, ' ' * (@length - x), pos(@count), total_count]
       end
 
       def pos(scale)
         if @current == @total
           scale
         else
-          Float(@current)/@total * scale
+          Float(@current) / @total * scale
         end
       end
     end

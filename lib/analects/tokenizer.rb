@@ -1,13 +1,13 @@
 module Analects
   class Tokenizer
-    #ALGO = RMMSeg::Algorithm
+    # ALGO = RMMSeg::Algorithm
     ALGO = RMMSeg::SimpleAlgorithm
 
     def initialize(chars_dic = '/tmp/chars.dic', words_dic = '/tmp/words.dic')
       unless File.exist?(chars_dic) && File.exist?(words_dic)
-        create_dict_from_cedict( chars_dic, words_dic )
+        create_dict_from_cedict(chars_dic, words_dic)
       end
-      #RMMSeg::Dictionary.dictionaries = [[:chars, chars_dic], [:words, words_dic]]
+      # RMMSeg::Dictionary.dictionaries = [[:chars, chars_dic], [:words, words_dic]]
       RMMSeg::Config.dictionaries = [[chars_dic, true], [words_dic, false]]
     end
 
@@ -15,13 +15,13 @@ module Analects
       @library ||= Analects::Library.new
     end
 
-    def cedict( fn = '/tmp/cedict.json' )
+    def cedict(fn = '/tmp/cedict.json')
       require 'json'
-      unless File.exist?( fn )
+      unless File.exist?(fn)
         library.cedict.retrieve
-        File.write( fn, library.cedict.to_a.to_json )
+        File.write(fn, library.cedict.to_a.to_json)
       end
-      @cedict ||= JSON.parse IO.read( fn )
+      @cedict ||= JSON.parse IO.read(fn)
     end
 
     def create_dict_from_cedict(chars_dic, words_dic)
@@ -37,18 +37,18 @@ module Analects
       end
 
       File.write(words_dic, words.sort.join("\n"))
-      File.write(chars_dic, histo.map {|ch, cnt| "%s %d\n" % [ ch, cnt ]}.join )
+      File.write(chars_dic, histo.map { |ch, cnt| "%s %d\n" % [ch, cnt] }.join)
     end
 
-    def tokenize( str )
+    def tokenize(str)
       [].tap do |result|
-        ALGO.new( str ).tap do |alg|
+        ALGO.new(str).tap do |alg|
           until (tok = alg.next_token).nil?
             result << tok.text.force_encoding('UTF-8')
           end
         end
       end
     end
-    alias call tokenize
+    alias_method :call, :tokenize
   end
 end

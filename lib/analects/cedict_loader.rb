@@ -6,13 +6,11 @@ module Analects
 
     attr_reader :headers
 
-    def initialize(io, library)
+    def initialize(io, _library)
       @contents = io.read
       @headers = {}
       @contents.each_line do |line|
-        if line =~ /^#! (.*)=(.*)/
-          @headers[$1.strip] = $2.strip
-        end
+        @headers[Regexp.last_match(1).strip] = Regexp.last_match(2).strip if line =~ /^#! (.*)=(.*)/
         break unless line =~ /^#/
       end
     end
@@ -30,7 +28,7 @@ module Analects
     end
 
     def find_by(qry)
-      qry.map {|field, value| lookup_index(field).fetch(value, [])}.inject {|r1, r2| r1 & r2}
+      qry.map { |field, value| lookup_index(field).fetch(value, []) }.inject { |r1, r2| r1 & r2 }
     end
 
     def lookup_index(field)
@@ -46,9 +44,9 @@ module Analects
 
     def process_contents(line)
       if line.strip =~ /^([^\s]*) ([^\s]*) \[([\w\d:,· ]+)\](.*)/
-        [$1,$2,$3,$4].map{|x| x.strip}
+        [Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(3), Regexp.last_match(4)].map(&:strip)
       else
-        raise "Unexpected contents : #{line.inspect}"
+        fail "Unexpected contents : #{line.inspect}"
       end
     end
   end

@@ -37,9 +37,9 @@ def CJKChar(str)
 
   if str.length > 1
     if str =~ /^(U\+)?([0-9A-Fa-f]+)/
-      str = [$2].pack('U')
+      str = [Regexp.last_match(2)].pack('U')
     else
-      raise ArgumentError, 'CJKChar must have length one'
+      fail ArgumentError, 'CJKChar must have length one'
     end
   end
 

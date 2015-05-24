@@ -5,7 +5,7 @@ class CreateCedictTable < ActiveRecord::Migration
       t.string :traditional
       t.string :pinyin
       t.string :english
-      
+
       t.timestamps
     end
   end

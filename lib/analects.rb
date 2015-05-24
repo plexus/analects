@@ -18,7 +18,7 @@ module Analects
 
   def self.cjk?(str)
     str.codepoints.all? do |cp|
-      Analects::Models::Zi.codepoint_ranges.any? {|range| range.include?(cp)}
+      Analects::Models::Zi.codepoint_ranges.any? { |range| range.include?(cp) }
     end
   end
 end

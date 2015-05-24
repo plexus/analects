@@ -11,7 +11,7 @@ module Analects
       def cedict
         @cedict ||= library.cedict.loader.find_by(
           traditional: traditional,
-          simplified: simplified,
+          simplified: simplified
         )
       end
     end

@@ -6,7 +6,7 @@ module Analects
       @name = name
       if block_given?
         if blk.arity == 0
-          self.instance_eval(&blk)
+          instance_eval(&blk)
         else
           yield self
         end
@@ -41,10 +41,9 @@ module Analects
           end
 
           desc 'download all sources'
-          task :all => sources.map(&:name)
+          task all: sources.map(&:name)
         end
       end
-
     end
   end
 end

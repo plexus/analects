@@ -37,14 +37,13 @@ module Analects
           enc,
           recode(enc, str).codepoints.map do |point|
             Analects::Models::Zi.codepoint_ranges.map.with_index do |range, idx|
-              next 6-idx if range.include?(point)
+              next 6 - idx if range.include?(point)
               0
             end.inject(:+)
           end.inject(:+)
         ]
       end.sort_by(&:last).reverse
     end
-
   end
 end
 

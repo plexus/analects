@@ -19,9 +19,7 @@ module Analects
         return options[:data_dir]
       end
       File.join(Dir.home, '.analects').tap do |dir|
-        unless File.exist? dir
-          Dir.mkdir dir
-        end
+        Dir.mkdir dir unless File.exist? dir
       end
     end
 
@@ -38,7 +36,7 @@ module Analects
       @cedict ||= create_source(
         :cedict,
         data_file: 'cedict_1_0_ts_utf-8_mdbg.txt',
-        retrieval: [ :http, :gunzip, :save ]
+        retrieval: [:http, :gunzip, :save]
       )
     end
 
@@ -52,7 +50,7 @@ module Analects
     def unihan
       @unihan ||= create_source(
         :unihan,
-        retrieval: [ :http, :unzip ]
+        retrieval: [:http, :unzip]
       )
     end
 
@@ -60,7 +58,7 @@ module Analects
       @hsk ||= create_source(
         :hsk,
         data_file: 'hsk.csv',
-        retrieval: [ :http, :save ]
+        retrieval: [:http, :save]
       )
     end
 
@@ -76,16 +74,13 @@ module Analects
     def create_source(name, source_options)
       Source.new(
         source_options.merge(
-          {
-            name: name,
-            library: self,
-            url: Analects.const_get("#{name.to_s.upcase}_URL"),
-            loader: Analects.const_get("#{Inflecto.camelize name}Loader"),
-            data_dir: data_dir
-          }
+          name: name,
+          library: self,
+          url: Analects.const_get("#{name.to_s.upcase}_URL"),
+          loader: Analects.const_get("#{Inflecto.camelize name}Loader"),
+          data_dir: data_dir
         ).merge(options.fetch(name, {}))
       )
     end
-
   end
 end

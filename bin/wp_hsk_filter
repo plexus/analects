@@ -6,27 +6,27 @@ require 'analects'
 RXP   = Regexp.union(Analects::Models::Zi::REGEXP, '…', '.')
 
 hanyu = Ting.writer(:hanyu, :accents)
-all_pinyin = Ting.all_syllables.map {|s| hanyu << s }.sort_by(&:length).reverse
-PY = Regexp.union(*all_pinyin.map{|p| p+'r'}, *all_pinyin, 'ng', '.', ' ', '\'')
+all_pinyin = Ting.all_syllables.map { |s| hanyu << s }.sort_by(&:length).reverse
+PY = Regexp.union(*all_pinyin.map { |p| p + 'r' }, *all_pinyin, 'ng', '.', ' ', '\'')
 
 def compile(str)
   Regexp.new(
     Regexp.escape(str.gsub(/\s+/, 'WW'))
         .gsub('ZZ', "(#{RXP}+)")
         .gsub('PY', "(#{PY}+)")
-        .gsub('WW','\s+'))
+        .gsub('WW', '\s+'))
 end
 
 csv = CSV.generate do |csv|
   $stdin.read.lines.each do |line|
     case line
     when compile('{{l|cmn|ZZ|sc=Hani}} ({{l|cmn|ZZ|sc=Hani}}) {{l|cmn|PY|sc=Hani}} (also: {{l|cmn|PY|sc=Hani}})'), compile('[[ZZ]] [[PY]], [[PY]]')
-      csv << [$1, $2, $3]
-      csv << [$1, $2, $4]
+      csv << [Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(3)]
+      csv << [Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(4)]
     when compile('{{l|cmn|ZZ|sc=Hani}} ({{l|cmn|ZZ|sc=Hani}}) {{l|cmn|PY|sc=Hani}}'), compile('[[ZZ]] ([[ZZ]]) [[PY]]')
-      csv << [$1, $2, $3]
+      csv << [Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(3)]
     when compile('{{l|cmn|ZZ|sc=Hani}} {{l|cmn|PY|sc=Hani}}'), compile('{{l|cmn|ZZ|sc=Hani}} {{l|cmn|PY|sc= Hani }}'), compile('[[ZZ]] [[PY]]')
-      csv << [$1, $1, $2]
+      csv << [Regexp.last_match(1), Regexp.last_match(1), Regexp.last_match(2)]
     else
       $stderr << line
     end

@@ -36,7 +36,7 @@ describe Analects::ChiseIdsLoader do
 
     it 'should loop over all entries' do
       expect(entries.first).to eq(['U+4E0D', '不', '不'])
-      expect(entries.last).to  eq(['CB00003', '&CB00003;', '⿱㓛&GT-47348;'])
+      expect(entries.last).to eq(['CB00003', '&CB00003;', '⿱㓛&GT-47348;'])
     end
 
     it 'should filter out entries without a tab' do
@@ -46,5 +46,4 @@ describe Analects::ChiseIdsLoader do
       expect(entry_no_tab).to be_nil
     end
   end
-
 end

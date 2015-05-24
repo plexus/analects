@@ -6,7 +6,7 @@ module Analects
 
     attr_reader :location
 
-    def initialize(location, library)
+    def initialize(location, _library)
       @location = location
     end
 
@@ -16,7 +16,7 @@ module Analects
       @location.each_line do |line|
         char, rest = line.strip.split(':')
         if rest =~ /(.*)\((.*)\)/
-          type, parts = $1, $2.split(',').map(&numize)
+          type, parts = Regexp.last_match(1), Regexp.last_match(2).split(',').map(&numize)
           yield [numize[char], type, parts]
         end
       end

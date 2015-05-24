@@ -14,8 +14,8 @@ module Analects
       end
     end
 
-    def initialize(pathname, library, only_unicode = true)
-      @contents = MultiFile.new(pathname.children.select{|ch| ch.to_s =~ /IDS-.*\.txt/})
+    def initialize(pathname, _library, only_unicode = true)
+      @contents = MultiFile.new(pathname.children.select { |ch| ch.to_s =~ /IDS-.*\.txt/ })
       @only_unicode = only_unicode
     end
 
@@ -26,8 +26,8 @@ module Analects
     def each(&blk)
       return to_enum(__method__) unless block_given?
       @entries ||= @contents.each_line
-        .reject {|line| line !~ /\t/ || (only_unicode && line !~ /^U/) }
-        .map    {|line| line.strip.split("\t")[0..2] }
+                   .reject { |line| line !~ /\t/ || (only_unicode && line !~ /^U/) }
+                   .map    { |line| line.strip.split("\t")[0..2] }
       @entries.each(&blk)
     end
   end

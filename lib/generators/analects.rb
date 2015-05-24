@@ -14,7 +14,6 @@ module Analects
       def self.source_root
         @_analects_source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'analects', generator_name, 'templates'))
       end
-
     end
   end
 end
