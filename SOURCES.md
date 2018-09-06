@@ -15,3 +15,4 @@
 * [Leiden Weibo Corpus](http://lwc.daanvanesch.nl/)
 * [The Lancaster Corpus of Mandarin Chinese](http://www.ota.ox.ac.uk/headers/2474.xml)
 * [Blog post: Top 5 "Language data consortium" corpora for Mandarin](http://corplinguistics.wordpress.com/2011/10/30/top-five-ldc-corpora/)
+* [Chinese Language Corpora for Sentiment Analysis](https://github.com/Lab41/sunny-side-up/wiki/Chinese-Datasets)
