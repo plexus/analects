@@ -9,6 +9,7 @@
 * [KanjiVG](https://github.com/kanjivg/kanjivg)
 * [Wikipedia : Ancient Chinese characters project](http://commons.wikimedia.org/wiki/Commons:Ancient_Chinese_characters_project)
 * [Hanzim Data](http://interstitiality.net/hanziData.html)
+* [HSK Vocab](https://github.com/sawcordwell/HSK-Vocab) scraped from official sources, with the new 6 levels
 
 ## Corpora
 
